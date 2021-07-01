@@ -1,0 +1,30 @@
+using Valr.Client.Websocket.Messages;
+
+namespace Valr.Client.Websocket.Responses
+{
+	/// <summary>
+	/// New account trade message.
+	/// </summary>
+	public record NewAccountTradeResponse : MessageBase<AccountTrade>;
+
+	/// <summary>
+	/// Valr account trade.
+	/// </summary>
+	public record AccountTrade : TradeBase
+	{
+		/// <summary>
+		/// Which side the trade was. Either "buy" or "sell".
+		/// </summary>
+		public string Side { get; init; } = null!;
+
+		/// <summary>
+		/// The order id.
+		/// </summary>
+		public string OrderId { get; init; } = null!;
+
+		/// <summary>
+		/// The trade id.
+		/// </summary>
+		public string Id { get; init; } = null!;
+	}
+}
