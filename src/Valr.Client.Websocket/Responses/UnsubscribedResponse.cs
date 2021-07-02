@@ -3,9 +3,9 @@ using Valr.Client.Websocket.Models;
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
-	/// Pong message.
+	/// Unsubscribed message.
 	/// </summary>
-	public record PongResponse : Message
+	public record UnsubscribedResponse : Message
 	{
 		/// <summary>
 		/// The message.

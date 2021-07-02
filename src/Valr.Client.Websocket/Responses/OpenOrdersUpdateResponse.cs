@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
-using Valr.Client.Websocket.Json;
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// Open orders update message.
 	/// </summary>
-	public record OpenOrdersUpdateResponse : MessageBase<IReadOnlyCollection<OpenOrder>>;
+	public record OpenOrdersUpdateResponse : Message<IReadOnlyCollection<OpenOrder>>;
 
 	/// <summary>
 	/// Valr open order info.
@@ -22,14 +20,48 @@ namespace Valr.Client.Websocket.Responses
 		public string Side { get; init; } = null!;
 
 		/// <summary>
+		/// The currency pair.
+		/// </summary>
+		public string CurrencyPair { get; init; } = null!;
+
+		/// <summary>
+		/// The type of order.
+		/// </summary>
+		public string Type { get; init; } = null!;
+
+		/// <summary>
+		/// The status of the order. One of the values in <see cref="OrderStatusType"/>.
+		/// </summary>
+		public string Status { get; init; } = null!;
+
+		/// <summary>
+		/// The time in force. Either "GTC", "IOC", or "FOK".
+		/// </summary>
+		public string TimeInForce { get; init; } = null!;
+
+		/// <summary>
 		/// Time order was created.
 		/// </summary>
 		public DateTime CreatedAt { get; init; }
 
 		/// <summary>
+		/// Time order was updated.
+		/// </summary>
+		public DateTime UpdatedAt { get; init; }
+
+		/// <summary>
+		/// The price.
+		/// </summary>
+		public double Price { get; init; }
+
+		/// <summary>
+		/// The quantity.
+		/// </summary>
+		public double Quantity { get; init; }
+
+		/// <summary>
 		/// The filled percentage.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double FilledPercentage { get; init; }
 	}
 }

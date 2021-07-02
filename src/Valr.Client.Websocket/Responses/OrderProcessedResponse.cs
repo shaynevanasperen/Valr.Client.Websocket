@@ -1,11 +1,11 @@
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// Order processed message.
 	/// </summary>
-	public record OrderProcessedResponse : MessageBase<OrderExecution>;
+	public record OrderProcessedResponse : Message<OrderExecution>;
 
 	/// <summary>
 	/// Valr order execution info.

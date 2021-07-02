@@ -1,11 +1,11 @@
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// Send status update message.
 	/// </summary>
-	public record SendStatusUpdateResponse : MessageBase<CryptoSend>;
+	public record SendStatusUpdateResponse : Message<CryptoSend>;
 
 	/// <summary>
 	/// Valr crypto send.

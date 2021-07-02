@@ -1,14 +1,12 @@
 using System;
-using System.Text.Json.Serialization;
-using Valr.Client.Websocket.Json;
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// New trade bucket message.
 	/// </summary>
-	public record NewTradeBucketResponse : PairMessageBase<TradeBucket>;
+	public record NewTradeBucketResponse : PairMessage<TradeBucket>;
 
 	/// <summary>
 	/// Valr trade bucket.
@@ -33,31 +31,26 @@ namespace Valr.Client.Websocket.Responses
 		/// <summary>
 		/// The open price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double Open { get; init; }
 
 		/// <summary>
 		/// The high price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double High { get; init; }
 
 		/// <summary>
 		/// The low price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double Low { get; init; }
 
 		/// <summary>
 		/// The close price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double Close { get; init; }
 
 		/// <summary>
 		/// The base currency volume.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double Volume { get; init; }
 	}
 }

@@ -1,16 +1,16 @@
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// New account trade message.
 	/// </summary>
-	public record NewAccountTradeResponse : MessageBase<AccountTrade>;
+	public record NewAccountTradeResponse : Message<AccountTrade>;
 
 	/// <summary>
 	/// Valr account trade.
 	/// </summary>
-	public record AccountTrade : TradeBase
+	public record AccountTrade : Trade
 	{
 		/// <summary>
 		/// Which side the trade was. Either "buy" or "sell".

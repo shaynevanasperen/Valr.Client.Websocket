@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
-using Valr.Client.Websocket.Json;
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// Aggregated order book update message.
 	/// </summary>
-	public record AggregatedOrderBookUpdateResponse : PairMessageBase<OrderBook>;
+	public record AggregatedOrderBookUpdateResponse : PairMessage<OrderBook>;
 
 	/// <summary>
 	/// Valr order book snapshot.
@@ -55,13 +53,11 @@ namespace Valr.Client.Websocket.Responses
 		/// <summary>
 		/// The price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double Price { get; init; }
 
 		/// <summary>
 		/// The amount.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double Quantity { get; init; }
 	}
 }

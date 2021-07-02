@@ -1,14 +1,12 @@
 using System;
-using System.Text.Json.Serialization;
-using Valr.Client.Websocket.Json;
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// Market summary update message.
 	/// </summary>
-	public record MarketSummaryUpdateResponse : PairMessageBase<MarketSummary>;
+	public record MarketSummaryUpdateResponse : PairMessage<MarketSummary>;
 
 	/// <summary>
 	/// Valr market summary snapshot.
@@ -23,43 +21,36 @@ namespace Valr.Client.Websocket.Responses
 		/// <summary>
 		/// The best ask price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double AskPrice { get; init; }
 
 		/// <summary>
 		/// The best bid price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double BidPrice { get; init; }
 
 		/// <summary>
 		/// The last traded price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double LastTradedPrice { get; init; }
 
 		/// <summary>
 		/// The previous close price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double PreviousClosePrice { get; init; }
 
 		/// <summary>
 		/// The base currency volume.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double BaseVolume { get; init; }
 
 		/// <summary>
 		/// The high price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double HighPrice { get; init; }
 
 		/// <summary>
 		/// The low price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double LowPrice { get; init; }
 
 		/// <summary>
@@ -70,7 +61,6 @@ namespace Valr.Client.Websocket.Responses
 		/// <summary>
 		/// The change from previous.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double ChangePromPrevious { get; init; }
 	}
 }

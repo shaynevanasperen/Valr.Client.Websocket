@@ -1,14 +1,15 @@
+using System;
 using System.Reactive.Subjects;
 using System.Text.Json;
 using Valr.Client.Websocket.Json;
 
-namespace Valr.Client.Websocket.Messages
+namespace Valr.Client.Websocket.Models
 {
 	/// <summary>
 	/// Base class for pair-specific messages.
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public abstract record PairMessageBase<T> : MessageBase<T>
+	public abstract record PairMessage<T> : Message<T>
 	{
 		/// <summary>
 		/// Which trading pair the message relates to.
@@ -20,7 +21,7 @@ namespace Valr.Client.Websocket.Messages
 	/// Base class for non-pair-specific messages.
 	/// </summary>
 	/// <typeparam name="T">The data type.</typeparam>
-	public abstract record MessageBase<T> : MessageBase
+	public abstract record Message<T> : Message
 	{
 		/// <summary>
 		/// The message data.
@@ -31,7 +32,7 @@ namespace Valr.Client.Websocket.Messages
 	/// <summary>
 	/// Base class for all messages.
 	/// </summary>
-	public abstract record MessageBase
+	public abstract record Message
 	{
 		/// <summary>
 		/// The type of message.
@@ -42,7 +43,16 @@ namespace Valr.Client.Websocket.Messages
 		{
 			if (messageType == supportedMessageType)
 			{
-				var value = response.ToObject<TResponse>(ValrJsonOptions.Default);
+				TResponse? value;
+				try
+				{
+					value = response.ToObject<TResponse>(ValrJsonOptions.Default);
+				}
+				catch (Exception exception)
+				{
+					throw new Exception($"Failed to deserialize JSON: {JsonSerializer.Serialize(response)}", exception);
+				}
+
 				if (value != null)
 				{
 					subject.OnNext(value);

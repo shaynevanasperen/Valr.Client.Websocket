@@ -1,14 +1,12 @@
 using System;
-using System.Text.Json.Serialization;
-using Valr.Client.Websocket.Json;
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// New account history record message.
 	/// </summary>
-	public record NewAccountHistoryRecordResponse : MessageBase<AccountHistoryRecord>;
+	public record NewAccountHistoryRecordResponse : Message<AccountHistoryRecord>;
 
 	/// <summary>
 	/// Valr trade bucket.
@@ -43,19 +41,16 @@ namespace Valr.Client.Websocket.Responses
 		/// <summary>
 		/// The debit value.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double DebitValue { get; init; }
 
 		/// <summary>
 		/// The credit value.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double CreditValue { get; init; }
 
 		/// <summary>
 		/// The fee value.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double FeeValue { get; init; }
 
 		/// <summary>
@@ -98,7 +93,6 @@ namespace Valr.Client.Websocket.Responses
 		/// <summary>
 		/// The cost per coin.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double CostPerCoin { get; init; }
 	}
 }

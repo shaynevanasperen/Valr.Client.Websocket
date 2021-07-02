@@ -1,4 +1,4 @@
-namespace Valr.Client.Websocket.Messages
+namespace Valr.Client.Websocket.Models
 {
 	/// <summary>
 	/// A list of all known Valr order status types.

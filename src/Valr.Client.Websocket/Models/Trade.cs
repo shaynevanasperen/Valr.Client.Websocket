@@ -1,13 +1,11 @@
 using System;
-using System.Text.Json.Serialization;
-using Valr.Client.Websocket.Json;
 
-namespace Valr.Client.Websocket.Messages
+namespace Valr.Client.Websocket.Models
 {
 	/// <summary>
 	/// Valr trade base class.
 	/// </summary>
-	public abstract record TradeBase
+	public abstract record Trade
 	{
 		/// <summary>
 		/// Which trading pair the trade relates to.
@@ -17,13 +15,11 @@ namespace Valr.Client.Websocket.Messages
 		/// <summary>
 		/// The open price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double Price { get; init; }
 
 		/// <summary>
 		/// The high price.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double Quantity { get; init; }
 
 		/// <summary>

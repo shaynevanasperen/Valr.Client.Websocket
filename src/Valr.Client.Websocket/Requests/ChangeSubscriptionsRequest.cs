@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Requests
 {
 	/// <summary>
 	/// A request to change the subscriptions.
 	/// </summary>
-	public record ChangeSubscriptionsRequest : MessageBase
+	public record ChangeSubscriptionsRequest : Message
 	{
 		/// <summary>
 		/// Creates a new instance.

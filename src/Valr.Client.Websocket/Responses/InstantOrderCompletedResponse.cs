@@ -1,14 +1,12 @@
 using System;
-using System.Text.Json.Serialization;
-using Valr.Client.Websocket.Json;
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// Instant order completed message.
 	/// </summary>
-	public record InstantOrderCompletedResponse : MessageBase<InstantOrderInfo>;
+	public record InstantOrderCompletedResponse : Message<InstantOrderInfo>;
 
 	/// <summary>
 	/// Valr instant order info.
@@ -28,19 +26,16 @@ namespace Valr.Client.Websocket.Responses
 		/// <summary>
 		/// The amount spent.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double PaidAmount { get; init; }
 
 		/// <summary>
 		/// The amount received.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double ReceivedAmount { get; init; }
 
 		/// <summary>
 		/// The amount paid in fees.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double FeeAmount { get; init; }
 
 		/// <summary>

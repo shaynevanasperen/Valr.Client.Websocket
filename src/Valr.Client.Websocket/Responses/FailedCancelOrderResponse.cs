@@ -1,11 +1,11 @@
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// Failed cancel order message.
 	/// </summary>
-	public record FailedCancelOrderResponse : MessageBase<CancelOrderFailure>;
+	public record FailedCancelOrderResponse : Message<CancelOrderFailure>;
 
 	/// <summary>
 	/// Valr cancel order failure.

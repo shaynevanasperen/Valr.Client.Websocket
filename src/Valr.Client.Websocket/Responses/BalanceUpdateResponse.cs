@@ -1,14 +1,12 @@
 using System;
-using System.Text.Json.Serialization;
-using Valr.Client.Websocket.Json;
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// Balance update message.
 	/// </summary>
-	public record BalanceUpdateResponse : MessageBase<Balance>;
+	public record BalanceUpdateResponse : Message<Balance>;
 
 	/// <summary>
 	/// Valr balance.
@@ -23,19 +21,16 @@ namespace Valr.Client.Websocket.Responses
 		/// <summary>
 		/// The available value.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double Available { get; init; }
 
 		/// <summary>
 		/// The reserved value.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double Reserved { get; init; }
 
 		/// <summary>
 		/// The total value.
 		/// </summary>
-		[JsonConverter(typeof(DoubleConverter))]
 		public double Total { get; init; }
 
 		/// <summary>

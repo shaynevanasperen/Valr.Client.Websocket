@@ -11,6 +11,7 @@ namespace Valr.Client.Websocket.Client
 	/// </summary>
 	public class ValrAccountClientStreams
 	{
+		internal readonly Subject<AuthenticatedResponse> AuthenticatedSubject = new();
 		internal readonly Subject<PongResponse> PongSubject = new();
 		internal readonly Subject<NewAccountHistoryRecordResponse> NewAccountHistoryRecordSubject = new();
 		internal readonly Subject<BalanceUpdateResponse> BalanceUpdateSubject = new();
@@ -22,6 +23,11 @@ namespace Valr.Client.Websocket.Client
 		internal readonly Subject<FailedCancelOrderResponse> FailedCancelOrderSubject = new();
 		internal readonly Subject<NewPendingReceiveResponse> NewPendingReceiveSubject = new();
 		internal readonly Subject<SendStatusUpdateResponse> SendStatusUpdateSubject = new();
+
+		/// <summary>
+		/// Authenticated stream - emits when authentication succeeded
+		/// </summary>
+		public IObservable<AuthenticatedResponse> AuthenticatedStream => AuthenticatedSubject.AsObservable();
 
 		/// <summary>
 		/// Pong stream - emits in response to ping requests

@@ -11,11 +11,29 @@ namespace Valr.Client.Websocket.Client
 	/// </summary>
 	public class ValrTradeClientStreams
 	{
+		internal readonly Subject<AuthenticatedResponse> AuthenticatedSubject = new();
+		internal readonly Subject<SubscribedResponse> SubscribedSubject = new();
+		internal readonly Subject<UnsubscribedResponse> UnsubscribedSubject = new();
 		internal readonly Subject<PongResponse> PongSubject = new();
 		internal readonly Subject<AggregatedOrderBookUpdateResponse> AggregatedOrderBookUpdateSubject = new();
 		internal readonly Subject<MarketSummaryUpdateResponse> MarketSummaryUpdateSubject = new();
 		internal readonly Subject<NewTradeBucketResponse> NewTradeBucketSubject = new();
 		internal readonly Subject<NewTradeResponse> NewTradeSubject = new();
+
+		/// <summary>
+		/// Authenticated stream - emits when authentication succeeded
+		/// </summary>
+		public IObservable<AuthenticatedResponse> AuthenticatedStream => AuthenticatedSubject.AsObservable();
+
+		/// <summary>
+		/// Subscribed stream - emits when a subscription is added/updated
+		/// </summary>
+		public IObservable<SubscribedResponse> SubscribedStream => SubscribedSubject.AsObservable();
+
+		/// <summary>
+		/// Subscribed stream - emits when a subscription is removed
+		/// </summary>
+		public IObservable<UnsubscribedResponse> UnsubscribedStream => UnsubscribedSubject.AsObservable();
 
 		/// <summary>
 		/// Pong stream - emits in response to ping requests

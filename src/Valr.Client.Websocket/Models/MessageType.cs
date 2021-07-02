@@ -1,4 +1,4 @@
-namespace Valr.Client.Websocket.Messages
+namespace Valr.Client.Websocket.Models
 {
 	/// <summary>
 	/// A list of all known Valr message types.
@@ -6,9 +6,11 @@ namespace Valr.Client.Websocket.Messages
 	public static class MessageType
 	{
 		// ReSharper disable InconsistentNaming
-#pragma warning disable CA1707 // Identifiers should not contain underscores
 #pragma warning disable 1591
+		public const string AUTHENTICATED = nameof(AUTHENTICATED);
 		public const string SUBSCRIBE = nameof(SUBSCRIBE);
+		public const string SUBSCRIBED = nameof(SUBSCRIBED);
+		public const string UNSUBSCRIBED = nameof(UNSUBSCRIBED);
 		public const string PING = nameof(PING);
 		public const string PONG = nameof(PONG);
 		public const string AGGREGATED_ORDERBOOK_UPDATE = nameof(AGGREGATED_ORDERBOOK_UPDATE);
@@ -26,6 +28,5 @@ namespace Valr.Client.Websocket.Messages
 		public const string NEW_PENDING_RECEIVE = nameof(NEW_PENDING_RECEIVE);
 		public const string SEND_STATUS_UPDATE = nameof(SEND_STATUS_UPDATE);
 #pragma warning restore 1591
-#pragma warning restore CA1707 // Identifiers should not contain underscores
 	}
 }

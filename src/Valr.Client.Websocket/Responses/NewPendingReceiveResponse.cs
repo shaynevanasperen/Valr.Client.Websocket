@@ -1,12 +1,12 @@
 using System;
-using Valr.Client.Websocket.Messages;
+using Valr.Client.Websocket.Models;
 
 namespace Valr.Client.Websocket.Responses
 {
 	/// <summary>
 	/// New pending crypto deposit message.
 	/// </summary>
-	public record NewPendingReceiveResponse : MessageBase<CryptoDeposit>;
+	public record NewPendingReceiveResponse : Message<CryptoDeposit>;
 
 	/// <summary>
 	/// Valr crypto deposit.
