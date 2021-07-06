@@ -1,6 +1,5 @@
 using System;
 using System.Net.WebSockets;
-using System.Reactive.PlatformServices;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Valr.Client.Websocket.Json;
@@ -23,12 +22,12 @@ namespace Valr.Client.Websocket.Client
 		/// <summary>
 		/// Creates a real live websocket connection to Valr.
 		/// </summary>
-		/// <param name="clock">A system clock.</param>
+		/// <param name="getUtcNow">A callback for getting the current time in UTC.</param>
 		/// <param name="secrets">The secrets.</param>
 		/// <param name="subscriptions">The required subscriptions.</param>
 		/// <returns>A connected Valr websocket client.</returns>
 		public static ValrWebsocketClient Create(
-			ISystemClock clock,
+			Func<DateTime> getUtcNow,
 			ValrSecrets secrets,
 			params Subscription[] subscriptions)
 		{
@@ -38,13 +37,13 @@ namespace Valr.Client.Websocket.Client
 
 			var accountClient = new WebsocketClient(new Uri($"{baseAddress}{accountPath}", UriKind.Absolute), () => new ClientWebSocket()
 				.WithKeepAliveInterval(TimeSpan.FromSeconds(3))
-				.WithAuthentication(accountPath, secrets, clock))
+				.WithAuthentication(accountPath, secrets, getUtcNow()))
 			{
 				Name = "Valr (Account)"
 			};
 			var tradeClient = new WebsocketClient(new Uri($"{baseAddress}{tradePath}", UriKind.Absolute), () => new ClientWebSocket()
 				.WithKeepAliveInterval(TimeSpan.FromSeconds(3))
-				.WithAuthentication(tradePath, secrets, clock))
+				.WithAuthentication(tradePath, secrets, getUtcNow()))
 			{
 				Name = "Valr (Trade)"
 			};
