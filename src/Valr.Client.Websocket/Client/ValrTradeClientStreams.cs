@@ -7,7 +7,7 @@ namespace Valr.Client.Websocket.Client
 {
 	/// <summary>
 	/// All provided streams.
-	/// You need to send subscription request in advance (via method `SendOnTradeWebsocket()` on ValrWebsocketClient)
+	/// You need to send subscription request in advance (via method `Send()` on ValrTradeWebsocketClient)
 	/// </summary>
 	public class ValrTradeClientStreams
 	{
