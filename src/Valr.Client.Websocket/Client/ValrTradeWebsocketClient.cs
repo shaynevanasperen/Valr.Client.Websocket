@@ -65,9 +65,7 @@ namespace Valr.Client.Websocket.Client
 			throw new Exception($"Unhandled response: '{messageSafe}'");
 		}
 
-		static bool HandleRawMessage(string message) => false;
-
-		static bool HandleTradeRawMessage(string message) => false;
+		static bool HandleRawMessage(string _) => false;
 
 		bool HandleObjectMessage(string message)
 		{

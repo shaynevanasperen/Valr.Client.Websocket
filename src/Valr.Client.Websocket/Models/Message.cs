@@ -46,7 +46,7 @@ namespace Valr.Client.Websocket.Models
 				TResponse? value;
 				try
 				{
-					value = response.ToObject<TResponse>(ValrJsonOptions.Default);
+					value = response.Deserialize<TResponse>(ValrJsonOptions.Default);
 				}
 				catch (Exception exception)
 				{

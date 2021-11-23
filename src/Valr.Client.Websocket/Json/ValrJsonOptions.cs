@@ -4,6 +4,6 @@ namespace Valr.Client.Websocket.Json
 {
 	static class ValrJsonOptions
 	{
-		public static JsonSerializerOptions Default = new(JsonSerializerDefaults.Web);
+		public static readonly JsonSerializerOptions Default = new(JsonSerializerDefaults.Web);
 	}
 }
