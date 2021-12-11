@@ -1,52 +1,51 @@
 using System.Collections.Generic;
 using Valr.Client.Websocket.Models;
 
-namespace Valr.Client.Websocket.Requests
+namespace Valr.Client.Websocket.Requests;
+
+/// <summary>
+/// A request to change the subscriptions.
+/// </summary>
+public record ChangeSubscriptionsRequest : Message
 {
 	/// <summary>
-	/// A request to change the subscriptions.
+	/// Creates a new instance.
 	/// </summary>
-	public record ChangeSubscriptionsRequest : Message
+	public ChangeSubscriptionsRequest(params Subscription[] subscriptions)
 	{
-		/// <summary>
-		/// Creates a new instance.
-		/// </summary>
-		public ChangeSubscriptionsRequest(params Subscription[] subscriptions)
-		{
-			Type = MessageType.SUBSCRIBE;
-			Subscriptions = subscriptions;
-		}
-
-		/// <summary>
-		/// The subscriptions to change.
-		/// </summary>
-		public IReadOnlyCollection<Subscription> Subscriptions { get; init; }
+		Type = MessageType.SUBSCRIBE;
+		Subscriptions = subscriptions;
 	}
 
 	/// <summary>
-	/// A subscription definition.
+	/// The subscriptions to change.
 	/// </summary>
-	public record Subscription
+	public IReadOnlyCollection<Subscription> Subscriptions { get; init; }
+}
+
+/// <summary>
+/// A subscription definition.
+/// </summary>
+public record Subscription
+{
+	/// <summary>
+	/// Creates a new instance.
+	/// </summary>
+	/// <param name="event">The event for which to change subscriptions.</param>
+	/// <param name="pairs">The pairs that should be subscribed.</param>
+	public Subscription(string @event, params string[] pairs)
 	{
-		/// <summary>
-		/// Creates a new instance.
-		/// </summary>
-		/// <param name="event">The event for which to change subscriptions.</param>
-		/// <param name="pairs">The pairs that should be subscribed.</param>
-		public Subscription(string @event, params string[] pairs)
-		{
-			Event = @event;
-			Pairs = pairs;
-		}
-
-		/// <summary>
-		/// The event being referred to.
-		/// </summary>
-		public string Event { get; init; }
-
-		/// <summary>
-		/// Which trading pairs should be subscribed.
-		/// </summary>
-		public IReadOnlyCollection<string> Pairs { get; init; }
+		Event = @event;
+		Pairs = pairs;
 	}
+
+	/// <summary>
+	/// The event being referred to.
+	/// </summary>
+	public string Event { get; init; }
+
+	/// <summary>
+	/// Which trading pairs should be subscribed.
+	/// </summary>
+	public IReadOnlyCollection<string> Pairs { get; init; }
 }

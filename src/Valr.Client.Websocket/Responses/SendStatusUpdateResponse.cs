@@ -1,30 +1,29 @@
 using Valr.Client.Websocket.Models;
 
-namespace Valr.Client.Websocket.Responses
+namespace Valr.Client.Websocket.Responses;
+
+/// <summary>
+/// Send status update message.
+/// </summary>
+public record SendStatusUpdateResponse : Message<CryptoSend>;
+
+/// <summary>
+/// Valr crypto send.
+/// </summary>
+public record CryptoSend
 {
 	/// <summary>
-	/// Send status update message.
+	/// The unique id.
 	/// </summary>
-	public record SendStatusUpdateResponse : Message<CryptoSend>;
+	public string UniqueId { get; init; } = null!;
 
 	/// <summary>
-	/// Valr crypto send.
+	/// The send status.
 	/// </summary>
-	public record CryptoSend
-	{
-		/// <summary>
-		/// The unique id.
-		/// </summary>
-		public string UniqueId { get; init; } = null!;
+	public string Status { get; init; } = null!;
 
-		/// <summary>
-		/// The send status.
-		/// </summary>
-		public string Status { get; init; } = null!;
-
-		/// <summary>
-		/// Number of transaction confirmations.
-		/// </summary>
-		public int Confirmations { get; init; }
-	}
+	/// <summary>
+	/// Number of transaction confirmations.
+	/// </summary>
+	public int Confirmations { get; init; }
 }
