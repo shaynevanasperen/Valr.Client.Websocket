@@ -28,6 +28,11 @@ public record OrderBook
 	/// The last time the order book changed.
 	/// </summary>
 	public DateTime LastChange { get; init; }
+
+	/// <summary>
+	/// The sequence number.
+	/// </summary>
+	public long SequenceNumber { get; init; }
 }
 
 /// <summary>
