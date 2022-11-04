@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.1;net5;net6</TargetFrameworks>
     <Description>Client for Valr websocket API</Description>
     <PackageTags>Valr websockets websocket client cryptocurrency exchange</PackageTags>
-	  <NoWarn>$(NoWarn);CA1816</NoWarn>
+    <NoWarn>$(NoWarn);CA1816</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
