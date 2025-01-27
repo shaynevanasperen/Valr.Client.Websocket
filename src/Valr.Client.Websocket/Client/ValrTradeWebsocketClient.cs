@@ -11,10 +11,9 @@ namespace Valr.Client.Websocket.Client;
 /// Use method `Send()` to subscribe to channels.
 /// And `Streams` to handle messages.
 /// </summary>
-public class ValrTradeWebsocketClient : ValrWebsocketClient, IValrTradeWebsocketClient
+/// <inheritdoc />
+public class ValrTradeWebsocketClient(ILogger logger, IWebsocketClient client) : ValrWebsocketClient(logger, client, "TRADE"), IValrTradeWebsocketClient
 {
-	/// <inheritdoc />
-	public ValrTradeWebsocketClient(ILogger logger, IWebsocketClient client) : base(logger, client, "TRADE") { }
 
 	/// <inheritdoc />
 	public ValrTradeClientStreams Streams { get; } = new();

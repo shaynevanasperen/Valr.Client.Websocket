@@ -13,14 +13,9 @@ using Valr.Client.Websocket.Requests;
 
 namespace Valr.Client.Websocket.Tests;
 
-public class PingPongTests
+public class PingPongTests(ITestOutputHelper outputHelper)
 {
-	readonly ILogger _logger;
-
-	public PingPongTests(ITestOutputHelper outputHelper)
-	{
-		_logger = new XUnitLogger(nameof(PingPongTests), outputHelper, new XUnitLoggerOptions());
-	}
+	readonly ILogger _logger = new XUnitLogger(nameof(PingPongTests), outputHelper, new XUnitLoggerOptions());
 
 	[IntegrationBddfyFact]
 	async Task PingPongOnAccountWebsocketWorks()

@@ -11,10 +11,8 @@ namespace Valr.Client.Websocket.Client;
 /// Automatically subscribes to all channels.
 /// Use `Streams` to handle messages.
 /// </summary>
-public class ValrAccountWebsocketClient : ValrWebsocketClient, IValrAccountWebsocketClient
+public class ValrAccountWebsocketClient(ILogger logger, IWebsocketClient client) : ValrWebsocketClient(logger, client, "ACCOUNT"), IValrAccountWebsocketClient
 {
-	/// <inheritdoc />
-	public ValrAccountWebsocketClient(ILogger logger, IWebsocketClient client) : base(logger, client, "ACCOUNT") { }
 
 	/// <inheritdoc />
 	public ValrAccountClientStreams Streams { get; } = new();

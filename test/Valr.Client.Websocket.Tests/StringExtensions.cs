@@ -13,6 +13,6 @@ static class StringExtensions
 		using var hashAlgorithm = new HMACSHA512(encoding.GetBytes(key));
 		var hash = hashAlgorithm.ComputeHash(bytes);
 
-		return BitConverter.ToString(hash).Replace("-", string.Empty, StringComparison.InvariantCulture).ToLowerInvariant();
+		return Convert.ToHexStringLower(hash).Replace("-", string.Empty, StringComparison.InvariantCulture).ToLowerInvariant();
 	}
 }

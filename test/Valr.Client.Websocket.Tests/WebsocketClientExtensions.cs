@@ -3,7 +3,6 @@ using System.Net.WebSockets;
 using FluentAssertions.Extensions;
 using Microsoft.Extensions.Logging;
 using Websocket.Client;
-using Websocket.Client.Models;
 
 namespace Valr.Client.Websocket.Tests;
 
