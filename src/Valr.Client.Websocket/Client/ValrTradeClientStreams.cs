@@ -35,6 +35,56 @@ public class ValrTradeClientStreams
 	public readonly Subject<AggregatedOrderBookUpdateResponse> AggregatedOrderBookUpdateStream = new();
 
 	/// <summary>
+	/// Full order book snapshot stream - emits once when subscribing to the update stream.
+	/// </summary>
+	public readonly Subject<FullOrderBookResponse> FullOrderBookSnapshotStream = new();
+
+	/// <summary>
+	/// Full order book update stream - emits for every change to the order book.
+	/// </summary>
+	public readonly Subject<FullOrderBookResponse> FullOrderBookUpdateStream = new();
+
+	/// <summary>
+	/// Efficient aggregated order book snapshot stream - emits once when subscribing to the update stream.
+	/// </summary>
+	public readonly Subject<L1TrackedOrderBookResponse> L1OrderBookSnapshotStream = new();
+
+	/// <summary>
+	/// Efficient aggregated order book update stream - emits for every change to the order book.
+	/// </summary>
+	public readonly Subject<L1TrackedOrderBookResponse> L1OrderBookUpdateStream = new();
+
+	/// <summary>
+	/// Efficient aggregated order book snapshot stream (depth 1) - emits for every change to the top level of the order book.
+	/// </summary>
+	public readonly Subject<L1OrderBookResponse> L1D1OrderBookSnapshotStream = new();
+
+	/// <summary>
+	/// Efficient aggregated order book snapshot stream (depth 5) - emits for every change to the top 5 levels of the order book.
+	/// </summary>
+	public readonly Subject<L1OrderBookResponse> L1D5OrderBookSnapshotStream = new();
+
+	/// <summary>
+	/// Efficient aggregated order book snapshot stream (depth 10) - emits for every change to the top 10 levels of the order book.
+	/// </summary>
+	public readonly Subject<L1OrderBookResponse> L1D10OrderBookSnapshotStream = new();
+
+	/// <summary>
+	/// Efficient aggregated order book snapshot stream (depth 20) - emits for every change to the top 20 levels of the order book.
+	/// </summary>
+	public readonly Subject<L1OrderBookResponse> L1D20OrderBookSnapshotStream = new();
+
+	/// <summary>
+	/// Efficient aggregated order book snapshot stream (depth 40) - emits for every change to the top 40 levels of the order book.
+	/// </summary>
+	public readonly Subject<L1OrderBookResponse> L1D40OrderBookSnapshotStream = new();
+
+	/// <summary>
+	/// Efficient aggregated order book snapshot stream (depth 80) - emits for every change to the top 80 levels of the order book.
+	/// </summary>
+	public readonly Subject<L1OrderBookResponse> L1D80OrderBookSnapshotStream = new();
+
+	/// <summary>
 	/// Allowed order types updated stream - emits when the allowed order types change.
 	/// </summary>
 	public readonly Subject<AllowedOrderTypesUpdatedResponse> AllowedOrderTypesUpdatedStream = new();

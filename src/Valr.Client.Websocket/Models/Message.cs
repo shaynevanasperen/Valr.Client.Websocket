@@ -1,14 +1,34 @@
 using System;
 using System.Reactive.Subjects;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Valr.Client.Websocket.Json;
 
 namespace Valr.Client.Websocket.Models;
 
 /// <summary>
+/// Base class for pair-specific messages which is more space efficient.
+/// </summary>
+/// <typeparam name="T">The data type.</typeparam>
+public abstract record EfficientPairMessage<T> : Message<T>
+{
+	/// <summary>
+	/// Which trading pair the message relates to.
+	/// </summary>
+	[JsonPropertyName("ps")]
+	public string CurrencyPairSymbol { get; set; } = null!;
+
+	/// <summary>
+	/// The message data.
+	/// </summary>
+	[JsonPropertyName("d")]
+	public T Data { get; set; } = default!;
+}
+
+/// <summary>
 /// Base class for pair-specific messages.
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <typeparam name="T">The data type.</typeparam>
 public abstract record PairMessage<T> : Message<T>
 {
 	/// <summary>

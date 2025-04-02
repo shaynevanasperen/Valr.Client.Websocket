@@ -9,6 +9,7 @@ using Xunit.Abstractions;
 using System.Text.Json;
 using System.Threading;
 using MartinCostello.Logging.XUnit;
+using Valr.Client.Websocket.Models;
 using Valr.Client.Websocket.Requests;
 
 namespace Valr.Client.Websocket.Tests;
@@ -20,7 +21,7 @@ public class PingPongTests(ITestOutputHelper outputHelper)
 	[IntegrationBddfyFact]
 	async Task PingPongOnAccountWebsocketWorks()
 	{
-		await PingPongWorks(ValrValues.AccountPath, x =>
+		await TestConnection(ValrValues.AccountPath, x =>
 		{
 			var client = new ValrAccountWebsocketClient(_logger, x);
 			client.Streams.PongStream.Subscribe(response => _logger.LogInformation(JsonSerializer.Serialize(response)));
@@ -31,7 +32,7 @@ public class PingPongTests(ITestOutputHelper outputHelper)
 	[IntegrationBddfyFact]
 	async Task PingPongOnTradeWebsocketWorks()
 	{
-		await PingPongWorks(ValrValues.TradePath, x =>
+		await TestConnection(ValrValues.TradePath, x =>
 		{
 			var client = new ValrTradeWebsocketClient(_logger, x);
 			client.Streams.PongStream.Subscribe(response => _logger.LogInformation(JsonSerializer.Serialize(response)));
@@ -39,7 +40,22 @@ public class PingPongTests(ITestOutputHelper outputHelper)
 		});
 	}
 
-	async Task PingPongWorks(string path, Func<WebsocketClient, ValrWebsocketClient> createClient)
+	[IntegrationBddfyFact]
+	async Task DiffOnTradeWebsocketWorks()
+	{
+		await TestConnection(ValrValues.TradePath, x =>
+		{
+			var client = new ValrTradeWebsocketClient(_logger, x);
+			client.Streams.L1OrderBookSnapshotStream.Subscribe(response => _logger.LogInformation(JsonSerializer.Serialize(response)));
+			client.Streams.L1OrderBookUpdateStream.Subscribe(response => _logger.LogInformation(JsonSerializer.Serialize(response)));
+
+			var subscription = new Subscription(MessageType.OB_L1_DIFF, "BTCZAR");
+			client.Send(new ChangeSubscriptionsRequest(subscription));
+			return client;
+		});
+	}
+
+	async Task TestConnection(string path, Func<WebsocketClient, ValrWebsocketClient> createClient)
 	{
 		var connection = new WebsocketClient(new Uri($"{ValrValues.ApiWebsocketUrl}{path}", UriKind.Absolute), () => new ClientWebSocket()
 			.WithDefaultKeepAliveInterval()
